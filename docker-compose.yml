@@ -1,6 +1,19 @@
 version: "3.4"
 
 services:
+  grocy:
+    image: lscr.io/linuxserver/grocy:latest
+    container_name: grocy
+    environment:
+      PGID: 1000
+      PUID: 1003
+      UMASK: 002
+      TZ: America/New_York
+    volumes:
+      - /share/CACHEDEV1_DATA/appdata/grocy:/config
+    ports:
+      - 9283:80
+    restart: unless-stopped
   mongo:
     image: mongo
     restart: always
